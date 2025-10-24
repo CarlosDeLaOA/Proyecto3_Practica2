@@ -80,7 +80,6 @@ export class GiftsComponent implements OnInit {
       name: gift.name || '',
       description: gift.description || '',
       price: gift.price || 0,
-      imageUrl: gift.imageUrl || '',
       giftListId: gift.giftList?.id?.toString() || ''
     });
   }

@@ -78,16 +78,3 @@ export interface IGift {
   giftList?: IGiftList;
 }
 
-export interface IProduct{
-  id?: number;
-  name?: string;
-  description?: string;
-  price?: number
-  category?: ICategories
-}
-
-export interface ICategories{
-  id?:  number;
-  name?: string;
-  description?: string;
-}

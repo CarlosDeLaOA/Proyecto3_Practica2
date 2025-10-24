@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { IGift, ICategories, IProduct } from '../../../interfaces';
+import { IGift,  IGiftList } from '../../../interfaces';
 
 @Component({
   selector: 'app-gift-form',
@@ -16,7 +16,7 @@ import { IGift, ICategories, IProduct } from '../../../interfaces';
 export class GiftFormComponent {
   @Input() form!: FormGroup;
   @Input() isEdit: boolean = false;
-  @Input() giftLists: ICategories[] = [];
+  @Input() giftLists: IGiftList[] = [];
   @Input() showGiftListSelector: boolean = true;
-  @Output() callSaveMethod: EventEmitter<IGift> = new EventEmitter<IProduct>();
+  @Output() callSaveMethod: EventEmitter<IGift> = new EventEmitter<IGift>();
 }

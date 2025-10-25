@@ -1,84 +1,85 @@
 import { Component, effect, inject } from '@angular/core';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
 import { LoaderComponent } from '../../components/loader/loader.component';
-import { ProductsTableComponent } from '../../components/producto/product-table/products-table.component';
-import { ProductFormComponent } from '../../components/producto/product-form/product-form.component';
-import { ProductService } from '../../services/productservices';
-import { CategoryService } from '../../services/categoryservices';
+import { ProductosTablaComponent } from '../../components/producto/products-tabla/products-tabla';
+import { ProductoFormComponent } from '../../components/producto/product-form/product-form';
+import { ProductoService } from '../../services/producto.service';
+import { CategoriaService } from '../../services/categoria.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { IProducto } from '../../interfaces';
+import { IProducto, ICategoria } from '../../interfaces';
 
 @Component({
-  selector: 'app-product',
+  selector: 'app-producto',
   standalone: true,
   imports: [
     PaginationComponent,
     LoaderComponent,
-    ProductsTableComponent,
-    ProductFormComponent
+    ProductosTablaComponent,
+    ProductoFormComponent
   ],
   templateUrl: './product.component.html',
-  styleUrl: './product.component.scss'
+  styleUrls: ['./product.component.scss']
 })
-export class ProductComponent {
-  public productService = inject(ProductService);
-  public categoryService = inject(CategoryService);
+export class ProductoComponent {
+  public productoService = inject(ProductoService);
+  public categoriaService = inject(CategoriaService);
   public fb = inject(FormBuilder);
 
   public form = this.fb.group({
     id: [0],
-    nombre: ['', Validators.required],
-    descripcion: [''],
-    precio: [0],
+    name: ['', Validators.required],
+    description: [''],
+    price: [0],
     stock: [0],
-    categoryId: [null as number | null, Validators.required]
+    categoria: [null as ICategoria | null, Validators.required] 
   });
 
   constructor() {
-    this.productService.getAll();
-    this.categoryService.getAll();
+    this.productoService.obtenerTodos();
+    this.categoriaService.obtenerTodos();
 
     effect(() => {
-      console.log('Productos actualizados:', this.productService.products$());
+      console.log('Products Updated:', this.productoService.productos$());
     });
+
     effect(() => {
-      console.log('Categorías cargadas:', this.categoryService.categories$());
+      console.log('Categories Updated:', this.categoriaService.categorias$());
     });
   }
 
-  save(item: any) {
-    const categoryId = item.categoryId;
-    if (!categoryId) return;
+  guardar(item: any) {
+    if (!item.categoria?.id) return;
 
     const payload: IProducto = {
       id: item.id ?? 0,
-      name: item.nombre,
-      description: item.descripcion,
-      price: item.precio,
-      stock: item.stock
+      name: item.name,
+      description: item.description,
+      price: item.price,
+      stock: item.stock,
+      categoria: item.categoria
     };
 
     if (item.id) {
-      this.productService.update(payload);
+      this.productoService.actualizar(payload);
     } else {
-      this.productService.addProductToCategory(categoryId, payload);
+      this.productoService.agregarProductoACategoria(item.categoria.id, payload);
     }
 
     this.form.reset();
   }
 
-  editProduct(product: IProducto) {
+  editarProducto(producto: IProducto) {
     this.form.patchValue({
-      id: product.id,
-      nombre: product.name,
-      descripcion: product.description,
-      precio: product.price,
-      stock: product.stock,
-      categoryId: product.category?.id ?? null
+      id: producto.id,
+      name: producto.name,
+      description: producto.description,
+      price: producto.price,
+      stock: producto.stock,
+      categoria: producto.categoria ?? null 
     });
   }
 
-  delete(item: IProducto) {
-    this.productService.delete(item);
+  eliminar(item: IProducto) {
+    this.productoService.eliminar(item);
   }
 }

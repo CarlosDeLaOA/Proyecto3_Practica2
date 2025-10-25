@@ -4,13 +4,13 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ICategoria } from '../../../interfaces';
 
 @Component({
-  selector: 'app-category-form',
+  selector: 'app-categoria-lista-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './category-list-form-component.html',
-  styleUrl: './category-list-form.component.scss'
+  templateUrl: './category-list-form.component.html',
+  styleUrls: ['./category-list-form.component.scss'] 
 })
-export class CategoryFormComponent {
+export class CategoriaListaFormComponent {
   @Input() form!: FormGroup;
   @Output() callSaveMethod: EventEmitter<ICategoria> = new EventEmitter<ICategoria>();
 }

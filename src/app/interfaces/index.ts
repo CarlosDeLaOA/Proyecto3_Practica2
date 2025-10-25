@@ -82,8 +82,11 @@ export interface ICategoria {
   id?: number;
   name?: string;
   description?: string;
+  price?: number;
+  imageUrl?: string;
   createdAt?: string;
   updatedAt?: string;
+
 }
 
 export interface IProducto {
@@ -92,5 +95,7 @@ export interface IProducto {
   description?: string;
   price?: number;
   stock?: number;
-  category?: ICategoria;
+  createdAt?: string;
+  updatedAt?: string;
+  categoria?: ICategoria;
 }

@@ -1,0 +1,42 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Num. Id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Category</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (productos.length === 0) {
+        <tr>
+          <td colspan="7" class="text-center">No products</td>
+        </tr>
+      }
+      @for (producto of productos; track producto.id) {
+        <tr>
+          <td>{{ producto.id }}</td>
+          <td>{{ producto.name }}</td>
+          <td>{{ producto.description }}</td>
+          <td>{{ producto.price ? '₡' + producto.price : 'N/A' }}</td>
+          <td>{{ producto.stock ?? 'N/A' }}</td>
+          <td>{{ producto.categoria?.name || 'N/A' }}</td>
+          <td>
+            <button (click)="callEditMethod.emit(producto)" class="btn btn-sm btn-warning me-2" type="button">
+              Edit
+            </button>
+            @if (areActionsAvailable) {
+              <button (click)="callDeleteMethod.emit(producto)" class="btn btn-sm btn-danger" type="button">
+                Delete
+              </button>
+            }
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

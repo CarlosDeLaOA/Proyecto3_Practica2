@@ -4,15 +4,15 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IProducto, ICategoria } from '../../../interfaces';
 
 @Component({
-  selector: 'app-product-form',
+  selector: 'app-producto-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './product-form.component.html'
+  templateUrl: './product-form.html',
 })
-export class ProductFormComponent {
+export class ProductoFormComponent {
   @Input() form!: FormGroup;
   @Input() isEdit: boolean = false;
-  @Input() categories: ICategoria[] = [];
+  @Input() categorias: ICategoria[] = [];
   @Input() showCategorySelector: boolean = true;
   @Output() callSaveMethod: EventEmitter<IProducto> = new EventEmitter<IProducto>();
 }

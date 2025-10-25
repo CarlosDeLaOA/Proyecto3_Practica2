@@ -28,7 +28,7 @@ export class CategoriaService extends BaseService<ICategoria> {
         );
         this.categoriaSignal.set(respuesta.data);
       },
-      error: (err) => console.error('Error al obtener categorías', err)
+      error: (err) => console.error('Error', err)
     });
   }
 
@@ -39,7 +39,7 @@ export class CategoriaService extends BaseService<ICategoria> {
         this.obtenerTodos();
       },
       error: () => {
-        this.alertaService.displayAlert('error', 'Error al agregar la categoría', 'center', 'top', ['error-snackbar']);
+        this.alertaService.displayAlert('error', 'Error', 'center', 'top', ['error-snackbar']);
       }
     });
   }
@@ -51,7 +51,7 @@ export class CategoriaService extends BaseService<ICategoria> {
         this.obtenerTodos();
       },
       error: () => {
-        this.alertaService.displayAlert('error', 'Error al actualizar la categoría', 'center', 'top', ['error-snackbar']);
+        this.alertaService.displayAlert('error', 'Error', 'center', 'top', ['error-snackbar']);
       }
     });
   }
@@ -63,7 +63,7 @@ export class CategoriaService extends BaseService<ICategoria> {
         this.obtenerTodos();
       },
       error: () => {
-        this.alertaService.displayAlert('error', 'Error al eliminar la categoría', 'center', 'top', ['error-snackbar']);
+        this.alertaService.displayAlert('error', 'Error ', 'center', 'top', ['error-snackbar']);
       }
     });
   }

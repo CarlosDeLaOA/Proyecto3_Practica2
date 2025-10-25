@@ -20,7 +20,7 @@ import { IProducto, ICategoria } from '../../interfaces';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductoComponent {
+export class ProductComponent {
   public productoService = inject(ProductoService);
   public categoriaService = inject(CategoriaService);
   public fb = inject(FormBuilder);

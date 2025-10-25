@@ -21,7 +21,7 @@ import { LoaderComponent } from '../../components/loader/loader.component';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
-export class CategoriaComponent implements OnInit {
+export class CategoryComponent implements OnInit {
   public categoriaService = inject(CategoriaService);
   public fb = inject(FormBuilder);
 

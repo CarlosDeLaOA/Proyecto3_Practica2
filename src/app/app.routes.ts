@@ -11,9 +11,8 @@ import { IRoleType } from './interfaces';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GiftsComponent } from './pages/gifts/gifts.component';
 import { GiftListGiftsComponent } from './pages/gift-list-gifts/gift-list-gifts.component';
-import { ProductoComponent } from './pages/producto/product.component';
-import { CategoriaComponent } from './pages/categoria/category.component';
-
+import { ProductComponent } from './pages/producto/product.component';
+import { CategoryComponent } from './pages/categoria/category.component';
 
 export const routes: Routes = [
   {
@@ -30,30 +29,22 @@ export const routes: Routes = [
     path: 'access-denied',
     component: AccessDeniedComponent,
   },
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },
+
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+
   {
     path: 'app',
     component: AppLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      {
-        path: 'app',
-        redirectTo: 'users',
-        pathMatch: 'full',
-      },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+
       {
         path: 'users',
         component: UsersComponent,
-        canActivate:[AdminRoleGuard],
-        data: { 
-          authorities: [
-            IRoleType.admin, 
-            IRoleType.superAdmin
-          ],
+        canActivate: [AdminRoleGuard],
+        data: {
+          authorities: [IRoleType.admin, IRoleType.superAdmin],
           name: 'Users',
           showInSidebar: true
         }
@@ -61,12 +52,8 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-        data: { 
-          authorities: [
-            IRoleType.admin, 
-            IRoleType.superAdmin,
-            IRoleType.user
-          ],
+        data: {
+          authorities: [IRoleType.admin, IRoleType.superAdmin, IRoleType.user],
           name: 'Dashboard',
           showInSidebar: true
         }
@@ -75,11 +62,7 @@ export const routes: Routes = [
         path: 'gift-list',
         component: GiftListGiftsComponent,
         data: {
-          authorities: [
-            IRoleType.admin,
-            IRoleType.superAdmin,
-            IRoleType.user,
-          ],
+          authorities: [IRoleType.admin, IRoleType.superAdmin, IRoleType.user],
           name: 'Gift Lists',
           showInSidebar: true
         }
@@ -88,40 +71,31 @@ export const routes: Routes = [
         path: 'gifts',
         component: GiftsComponent,
         data: {
-          authorities: [
-            IRoleType.admin,
-            IRoleType.superAdmin,
-            IRoleType.user,
-          ],
+          authorities: [IRoleType.admin, IRoleType.superAdmin, IRoleType.user],
           name: 'Gifts',
           showInSidebar: true
         }
-      }
-    ],
-  },
-  {path: 'categorias',
-        component: CategoriaComponent,
+      },
+
+      {
+        path: 'categorias',
+        component: CategoryComponent,
         data: {
-          authorities: [
-            IRoleType.admin,
-            IRoleType.superAdmin,
-            IRoleType.user,
-          ],
-          name: 'Categorias',
+          authorities: [IRoleType.admin, IRoleType.superAdmin, IRoleType.user],
+          name: 'Categories',
           showInSidebar: true
         }
       },
       {
         path: 'productos',
-        component: ProductoComponent,
+        component: ProductComponent,
         data: {
-          authorities: [
-            IRoleType.admin,
-            IRoleType.superAdmin,
-            IRoleType.user,
-          ],
-          name: 'Productos',
+          authorities: [IRoleType.admin, IRoleType.superAdmin, IRoleType.user],
+          name: 'Products',
           showInSidebar: true
         }
-      }
+      },
+    ],
+  },
+
 ];

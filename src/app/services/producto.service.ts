@@ -26,7 +26,7 @@ export class ProductoService extends BaseService<IProduct> {
         );
         this.productoSignal.set(resp.data);
       },
-      error: (err: any) => console.error('Error al obtener productos', err),
+      error: (err: any) => console.error('Error', err),
     });
   }
 
@@ -43,7 +43,7 @@ export class ProductoService extends BaseService<IProduct> {
         );
         this.productoSignal.set(resp.data);
       },
-      error: (err: any) => console.error('Error al obtener productos por categoría', err),
+      error: (err: any) => console.error('Error', err),
     });
   }
 
@@ -57,7 +57,7 @@ export class ProductoService extends BaseService<IProduct> {
         this.obtenerTodos();
       },
       error: (err: any) => {
-        this.alertaService.displayAlert('error', 'Error al agregar el producto', 'center', 'top', ['error-snackbar']);
+        this.alertaService.displayAlert('error', 'Error', 'center', 'top', ['error-snackbar']);
         console.error('Error', err);
       },
     });
@@ -70,7 +70,7 @@ export class ProductoService extends BaseService<IProduct> {
         this.obtenerTodos();
       },
       error: (err: any) => {
-        this.alertaService.displayAlert('error', 'Error al actualizar el producto', 'center', 'top', ['error-snackbar']);
+        this.alertaService.displayAlert('error', 'Error', 'center', 'top', ['error-snackbar']);
         console.error('Error', err);
       },
     });
@@ -83,7 +83,7 @@ export class ProductoService extends BaseService<IProduct> {
         this.obtenerTodos();
       },
       error: (err: any) => {
-        this.alertaService.displayAlert('error', 'Error al eliminar el producto', 'center', 'top', ['error-snackbar']);
+        this.alertaService.displayAlert('error', 'Error', 'center', 'top', ['error-snackbar']);
         console.error('Error', err);
       },
     });
@@ -98,7 +98,7 @@ export class ProductoService extends BaseService<IProduct> {
         this.obtenerPorCategoriaId(categoriaId);
       },
       error: (err: any) => {
-        this.alertaService.displayAlert('error', 'Error al eliminar el producto', 'center', 'top', ['error-snackbar']);
+        this.alertaService.displayAlert('error', 'Error', 'center', 'top', ['error-snackbar']);
         console.error('Error', err);
       },
     });

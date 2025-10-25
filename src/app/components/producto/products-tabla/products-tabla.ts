@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IProducto } from '../../../interfaces';
+import { IProduct } from '../../../interfaces';
 
 @Component({
   selector: 'app-productos-tabla',
@@ -10,9 +10,9 @@ import { IProducto } from '../../../interfaces';
 
 })
 export class ProductosTablaComponent {
-  @Input() productos: IProducto[] = [];
+  @Input() productos: IProduct[] = [];
   @Input() areActionsAvailable: boolean = true;
 
-  @Output() callEditMethod: EventEmitter<IProducto> = new EventEmitter<IProducto>();
-  @Output() callDeleteMethod: EventEmitter<IProducto> = new EventEmitter<IProducto>();
+  @Output() callEditMethod: EventEmitter<IProduct> = new EventEmitter<IProduct>();
+  @Output() callDeleteMethod: EventEmitter<IProduct> = new EventEmitter<IProduct>();
 }

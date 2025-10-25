@@ -78,7 +78,7 @@ export interface IGift {
   giftList?: IGiftList;
 }
 
-export interface ICategoria {
+export interface ICategory {
   id?: number;
   name?: string;
   description?: string;
@@ -89,7 +89,7 @@ export interface ICategoria {
 
 }
 
-export interface IProducto {
+export interface IProduct {
   id?: number;
   name?: string;
   description?: string;
@@ -97,5 +97,5 @@ export interface IProducto {
   stock?: number;
   createdAt?: string;
   updatedAt?: string;
-  categoria?: ICategoria;
+  categoria?: ICategory;
 }

@@ -1,14 +1,14 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { ICategoria, IResponse, ISearch } from '../interfaces';
+import { ICategory, IResponse, ISearch } from '../interfaces';
 import { BaseService } from './base-service';
 import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriaService extends BaseService<ICategoria> {
+export class CategoriaService extends BaseService<ICategory> {
   protected override source: string = 'categories';
-  private categoriaSignal = signal<ICategoria[]>([]);
+  private categoriaSignal = signal<ICategory[]>([]);
 
   get categorias$() {
     return this.categoriaSignal;
@@ -20,7 +20,7 @@ export class CategoriaService extends BaseService<ICategoria> {
 
   obtenerTodos() {
     this.findAllWithParams({ page: this.busqueda.page, size: this.busqueda.size }).subscribe({
-      next: (respuesta: IResponse<ICategoria[]>) => {
+      next: (respuesta: IResponse<ICategory[]>) => {
         this.busqueda = { ...this.busqueda, ...respuesta.meta };
         this.totalElementos = Array.from(
           { length: this.busqueda.totalPages ?? 0 },
@@ -32,9 +32,9 @@ export class CategoriaService extends BaseService<ICategoria> {
     });
   }
 
-  guardar(categoria: ICategoria) {
+  guardar(categoria: ICategory) {
     this.add(categoria).subscribe({
-      next: (respuesta: IResponse<ICategoria>) => {
+      next: (respuesta: IResponse<ICategory>) => {
         this.alertaService.displayAlert('success', respuesta.message, 'center', 'top', ['success-snackbar']);
         this.obtenerTodos();
       },
@@ -44,9 +44,9 @@ export class CategoriaService extends BaseService<ICategoria> {
     });
   }
 
-  actualizar(categoria: ICategoria) {
+  actualizar(categoria: ICategory) {
     this.edit(categoria.id!, categoria).subscribe({
-      next: (respuesta: IResponse<ICategoria>) => {
+      next: (respuesta: IResponse<ICategory>) => {
         this.alertaService.displayAlert('success', respuesta.message, 'center', 'top', ['success-snackbar']);
         this.obtenerTodos();
       },
@@ -56,9 +56,9 @@ export class CategoriaService extends BaseService<ICategoria> {
     });
   }
 
-  eliminar(categoria: ICategoria) {
+  eliminar(categoria: ICategory) {
     this.del(categoria.id!).subscribe({
-      next: (respuesta: IResponse<ICategoria>) => {
+      next: (respuesta: IResponse<ICategory>) => {
         this.alertaService.displayAlert('success', respuesta.message, 'center', 'top', ['success-snackbar']);
         this.obtenerTodos();
       },

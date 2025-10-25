@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { IProducto, ICategoria } from '../../../interfaces';
+import { IProduct, ICategory } from '../../../interfaces';
 
 @Component({
   selector: 'app-producto-form',
@@ -12,7 +12,7 @@ import { IProducto, ICategoria } from '../../../interfaces';
 export class ProductoFormComponent {
   @Input() form!: FormGroup;
   @Input() isEdit: boolean = false;
-  @Input() categorias: ICategoria[] = [];
+  @Input() categorias: ICategory[] = [];
   @Input() showCategorySelector: boolean = true;
-  @Output() callSaveMethod: EventEmitter<IProducto> = new EventEmitter<IProducto>();
+  @Output() callSaveMethod: EventEmitter<IProduct> = new EventEmitter<IProduct>();
 }

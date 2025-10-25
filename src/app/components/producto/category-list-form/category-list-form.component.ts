@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ICategoria } from '../../../interfaces';
+import { ICategory } from '../../../interfaces';
 
 @Component({
   selector: 'app-categoria-lista-form',
@@ -12,5 +12,5 @@ import { ICategoria } from '../../../interfaces';
 })
 export class CategoriaListaFormComponent {
   @Input() form!: FormGroup;
-  @Output() callSaveMethod: EventEmitter<ICategoria> = new EventEmitter<ICategoria>();
+  @Output() callSaveMethod: EventEmitter<ICategory> = new EventEmitter<ICategory>();
 }

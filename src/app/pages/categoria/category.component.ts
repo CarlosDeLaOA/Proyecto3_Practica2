@@ -2,7 +2,7 @@ import { Component, OnInit, inject, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CategoriaService } from '../../services/categoria.service';
-import { ICategoria } from '../../interfaces';
+import { ICategory } from '../../interfaces';
 import { CategoriaListaFormComponent } from '../../components/producto/category-list-form/category-list-form.component';
 import { CategoriaListaComponent } from '../../components/producto/category-list/category-list.component';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
@@ -43,7 +43,7 @@ export class CategoryComponent implements OnInit {
     this.categoriaService.obtenerTodos();
   }
 
-  guardar(categoria: ICategoria) {
+  guardar(categoria: ICategory) {
     if (this.isEdit && categoria.id) {
       this.categoriaService.actualizar(categoria);
     } else {
@@ -54,7 +54,7 @@ export class CategoryComponent implements OnInit {
     this.isEdit = false;
   }
 
-  editar(categoria: ICategoria) {
+  editar(categoria: ICategory) {
     this.isEdit = true;
     this.form.patchValue({
       id: categoria.id,
@@ -63,7 +63,7 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  eliminar(categoria: ICategoria) {
+  eliminar(categoria: ICategory) {
     this.categoriaService.eliminar(categoria);
   }
 }

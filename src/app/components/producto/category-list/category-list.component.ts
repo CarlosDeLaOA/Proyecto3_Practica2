@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ICategoria } from '../../../interfaces';
+import { ICategory } from '../../../interfaces';
 
 @Component({
   selector: 'app-categoria-lista',
@@ -9,7 +9,7 @@ import { ICategoria } from '../../../interfaces';
   styleUrls: ['./category-list.component.scss']
 })
 export class CategoriaListaComponent {
-  @Input() categoriasList: ICategoria[] = [];
-  @Output() callEditMethod: EventEmitter<ICategoria> = new EventEmitter<ICategoria>();
-  @Output() callDeleteMethod: EventEmitter<ICategoria> = new EventEmitter<ICategoria>();
+  @Input() categoriasList: ICategory[] = [];
+  @Output() callEditMethod: EventEmitter<ICategory> = new EventEmitter<ICategory>();
+  @Output() callDeleteMethod: EventEmitter<ICategory> = new EventEmitter<ICategory>();
 }

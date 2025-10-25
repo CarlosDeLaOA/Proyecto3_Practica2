@@ -6,7 +6,7 @@ import { ProductoFormComponent } from '../../components/producto/product-form/pr
 import { ProductoService } from '../../services/producto.service';
 import { CategoriaService } from '../../services/categoria.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { IProducto, ICategoria } from '../../interfaces';
+import { IProduct, ICategory } from '../../interfaces';
 
 @Component({
   selector: 'app-producto',
@@ -31,7 +31,7 @@ export class ProductComponent {
     description: [''],
     price: [0],
     stock: [0],
-    categoria: [null as ICategoria | null, Validators.required] 
+    categoria: [null as ICategory | null, Validators.required] 
   });
 
   constructor() {
@@ -50,7 +50,7 @@ export class ProductComponent {
   guardar(item: any) {
     if (!item.categoria?.id) return;
 
-    const payload: IProducto = {
+    const payload: IProduct = {
       id: item.id ?? 0,
       name: item.name,
       description: item.description,
@@ -68,7 +68,7 @@ export class ProductComponent {
     this.form.reset();
   }
 
-  editarProducto(producto: IProducto) {
+  editarProducto(producto: IProduct) {
     this.form.patchValue({
       id: producto.id,
       name: producto.name,
@@ -79,7 +79,7 @@ export class ProductComponent {
     });
   }
 
-  eliminar(item: IProducto) {
+  eliminar(item: IProduct) {
     this.productoService.eliminar(item);
   }
 }

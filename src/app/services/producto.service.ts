@@ -1,12 +1,12 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { IProducto, IResponse, ISearch } from '../interfaces';
+import { IProduct, IResponse, ISearch } from '../interfaces';
 import { BaseService } from './base-service';
 import { AlertService } from './alert.service';
 
 @Injectable({ providedIn: 'root' })
-export class ProductoService extends BaseService<IProducto> {
+export class ProductoService extends BaseService<IProduct> {
   protected override source = 'products';
-  private productoSignal = signal<IProducto[]>([]);
+  private productoSignal = signal<IProduct[]>([]);
 
   get productos$() {
     return this.productoSignal;
@@ -18,7 +18,7 @@ export class ProductoService extends BaseService<IProducto> {
 
   obtenerTodos() {
     this.findAllWithParams({ page: this.busqueda.page, size: this.busqueda.size }).subscribe({
-      next: (resp: IResponse<IProducto[]>) => {
+      next: (resp: IResponse<IProduct[]>) => {
         this.busqueda = { ...this.busqueda, ...resp.meta };
         this.totalElementos = Array.from(
           { length: this.busqueda.totalPages ?? 0 },
@@ -35,7 +35,7 @@ export class ProductoService extends BaseService<IProducto> {
       `category/${categoriaId}`,
       { page: this.busqueda.page, size: this.busqueda.size }
     ).subscribe({
-      next: (resp: IResponse<IProducto[]>) => {
+      next: (resp: IResponse<IProduct[]>) => {
         this.busqueda = { ...this.busqueda, ...resp.meta };
         this.totalElementos = Array.from(
           { length: this.busqueda.totalPages ?? 0 },
@@ -47,12 +47,12 @@ export class ProductoService extends BaseService<IProducto> {
     });
   }
 
-  agregarProductoACategoria(categoriaId: number, producto: IProducto) {
+  agregarProductoACategoria(categoriaId: number, producto: IProduct) {
     this.addCustomSource(
       `category/${categoriaId}`,
       producto
     ).subscribe({
-      next: (resp: IResponse<IProducto>) => {
+      next: (resp: IResponse<IProduct>) => {
         this.alertaService.displayAlert('success', resp.message, 'center', 'top', ['success-snackbar']);
         this.obtenerTodos();
       },
@@ -63,9 +63,9 @@ export class ProductoService extends BaseService<IProducto> {
     });
   }
 
-  actualizar(producto: IProducto) {
+  actualizar(producto: IProduct) {
     this.edit(producto.id!, producto).subscribe({
-      next: (resp: IResponse<IProducto>) => {
+      next: (resp: IResponse<IProduct>) => {
         this.alertaService.displayAlert('success', resp.message, 'center', 'top', ['success-snackbar']);
         this.obtenerTodos();
       },
@@ -76,9 +76,9 @@ export class ProductoService extends BaseService<IProducto> {
     });
   }
 
-  eliminar(producto: IProducto) {
+  eliminar(producto: IProduct) {
     this.del(producto.id!).subscribe({
-      next: (resp: IResponse<IProducto>) => {
+      next: (resp: IResponse<IProduct>) => {
         this.alertaService.displayAlert('success', resp.message, 'center', 'top', ['success-snackbar']);
         this.obtenerTodos();
       },
@@ -93,7 +93,7 @@ export class ProductoService extends BaseService<IProducto> {
     this.delCustomSource(
       `category/${categoriaId}/${productoId}`
     ).subscribe({
-      next: (resp: IResponse<IProducto>) => {
+      next: (resp: IResponse<IProduct>) => {
         this.alertaService.displayAlert('success', resp.message, 'center', 'top', ['success-snackbar']);
         this.obtenerPorCategoriaId(categoriaId);
       },

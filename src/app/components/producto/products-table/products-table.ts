@@ -6,7 +6,7 @@ import { IProduct } from '../../../interfaces';
   selector: 'app-productos-tabla',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './products-tabla.html',
+  templateUrl: './products-table.html',
 
 })
 export class ProductosTablaComponent {

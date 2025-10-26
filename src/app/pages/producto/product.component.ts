@@ -1,7 +1,7 @@
 import { Component, effect, inject } from '@angular/core';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
 import { LoaderComponent } from '../../components/loader/loader.component';
-import { ProductosTablaComponent } from '../../components/producto/products-tabla/products-tabla';
+import { ProductosTablaComponent } from '../../components/producto/products-table/products-table';
 import { ProductoFormComponent } from '../../components/producto/product-form/product-form';
 import { ProductoService } from '../../services/producto.service';
 import { CategoriaService } from '../../services/categoria.service';
